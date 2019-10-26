@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\UsersProfile;
 use App\VerifyUser;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -13,10 +15,10 @@ class UserProfileController extends Controller
     public function putUpdateUser(EditUserProfileRequest $request)
     {
         $userId=Auth::user()->id;
-        $userProfile=UsersProfile::where("id", $userId)->first();
-        if ($userProfile==null){
-            $userProfile=new UsersProfile();
-        }
+        $userProfile=UsersProfile::where("profile_id", $userId)->first();
+//        if ($userProfile==null){
+//            $userProfile=new UsersProfile();
+//        }
             $user_name = $request->get('user_name');
             $user_surname = $request->get('user_surname');
             $phone = $request->get('phone');
@@ -39,7 +41,15 @@ class UserProfileController extends Controller
                 $userProfile->country = $country;
             }
 
-            $userProfile->save();
+        DB::table('users_profiles')
+            ->where('profile_id', $userId)
+            ->updateOrInsert([
+                'user_name' => $user_name,
+                'user_surname' => $user_surname,
+                'phone' => $phone,
+                'address' => $address,
+                'country' => $country
+            ]);
 
         return response()->json(['user_profile_updated' => true], 201);
     }
@@ -47,11 +57,16 @@ class UserProfileController extends Controller
     public function getUserProfile()
     {
         $userId=Auth::user()->id;
-        $userProfile=UsersProfile::where("id", $userId)->first();
+        $userProfile=UsersProfile::where("profile_id", $userId)->first();
         if ($userProfile == null){
-            return $userProfile = new UsersProfile();
+            $userProfile = new UsersProfile();
         }
         return response()->json($userProfile);
+        
+//        DB::table('users_profiles')
+//            ->where('profile_id', $userId)
+//            ->update(['user_name' => 'Updated Title']);
+//        return response()->json($userProfile);
 
 //        $userProfile= new UsersProfile();
 //
@@ -67,5 +82,6 @@ class UserProfileController extends Controller
 
 //        $userProfile2=UsersProfile::where("id", $userId)->first();
 //        echo($userProfile2->user_name);
+
     }
 }

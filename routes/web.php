@@ -48,5 +48,8 @@ Route::get('/user', 'UserProfileController@putUpdateUser');
 | Method:         GET
 | Description:    Get's the authenticated user's profile
 */
-Route::get('/user', 'UserProfileController@getUserProfile');
-Route::put('/user', 'UserProfileController@updateUserProfile');
+
+Auth::routes();
+Route::get('/user', 'UserProfileController@getUserProfile')->middleware('auth');
+Auth::routes();
+Route::put('/user', 'UserProfileController@updateUserProfile')->middleware('auth');
