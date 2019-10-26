@@ -26,8 +26,27 @@ Route::get('/got', [
     'uses' => function () {
         echo "You are allowed to view this page!";
     }]);
-
 Auth::routes();
 Route::get('/user/verify/{token}', 'Auth\RegisterController@verifyUser');
-
 Route::get('/home', 'HomeController@index')->name('home');
+/*
+|-------------------------------------------------------------------------------
+| Updates a User's Profile
+|-------------------------------------------------------------------------------
+| URL:            /user
+| Controller:     API\UsersController@putUpdateUser
+| Method:         PUT
+| Description:    Updates the authenticated user's profile
+*/
+Route::get('/user', 'UserProfileController@putUpdateUser');
+/*
+|-------------------------------------------------------------------------------
+| Updates a User's Profile
+|-------------------------------------------------------------------------------
+| URL:            /user
+| Controller:     API\UsersController@putUpdateUser
+| Method:         GET
+| Description:    Get's the authenticated user's profile
+*/
+Route::get('/user', 'UserProfileController@getUserProfile');
+Route::put('/user', 'UserProfileController@updateUserProfile');
