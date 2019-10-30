@@ -26,28 +26,26 @@ class UserProfileController extends Controller
            $this->creteEmptyProfile($userProfile);
         }
 
-
         $user_name = $request['user_name'];
         $user_surname = $request['user_surname'];
         $phone = $request['phone'];
         $address = $request['address'];
         $country = $request['country'];
 
-//        if ($user_name != '') {
-//            $userProfile->user_name = $user_name;
-//        }
-//        if ($user_surname != '') {
-//            $userProfile->user_surname = $user_surname;
-//        }
-//        if ($phone != '') {
-//            $userProfile->profile_visibility = $phone;
-//        }
-//        if ($address != '') {
-//            $userProfile->address = $address;
-//        }
-//        if ($country != '') {
-//            $userProfile->country = $country;
-//        }
+        if (UsersProfile::where("profile_id", $userId)->first() === null) {
+            $userProfile = new UsersProfile();
+            DB::table('users_profiles')
+                ->where('profile_id', $userId)
+                ->updateOrInsert([
+                    'profile_id' => $userId,
+                    'user_name' => $user_name,
+                    'user_surname' => $user_surname,
+                    'phone' => $phone,
+                    'address' => $address,
+                    'country' => $country,
+                ]);
+        }
+
 
         DB::table('users_profiles')
             ->where('profile_id', $userId)
@@ -60,11 +58,7 @@ class UserProfileController extends Controller
                 'country' => $country,
             ]);
 
-        $userId = Auth::user()->id;
         $userProfile = UsersProfile::where("profile_id", $userId)->first();
-        if ($userProfile === null) {
-            $userProfile = new UsersProfile();
-        }
         return view('userProfile')->withCharacters( $userProfile->toArray());
     }
 

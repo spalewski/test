@@ -1387,19 +1387,19 @@ License: You must have a valid license purchased only from themeforest(the above
                                                     @csrf
                                                     <div class="form-group">
                                                         <label class="control-label">First Name</label>
-                                                        <input id='user_name' name='user_name' type="text" placeholder={{$characters['user_name']}} class="form-control" /> </div>
+                                                        <input id='user_name' required="required" name='user_name' type="text" placeholder={{$characters['user_name']}} class="form-control" /> </div>
                                                     <div class="form-group">
                                                         <label class="control-label">Last Name</label>
-                                                        <input id='user_surname' name='user_surname' type="text" placeholder={{$characters['user_surname']}} class="form-control" /> </div>
+                                                        <input id='user_surname' required="required" name='user_surname' type="text" placeholder={{$characters['user_surname']}} class="form-control" /> </div>
                                                     <div class="form-group">
                                                         <label class="control-label">Address</label>
-                                                        <input id='address' name='address' type="text" placeholder={{$characters['address']}} class="form-control" /> </div>
+                                                        <input id='address' required="required" name='address' type="text" placeholder={{$characters['address']}} class="form-control" /> </div>
                                                     <div class="form-group">
                                                         <label class="control-label">Country</label>
-                                                        <input id='country' name='country' type="text" placeholder={{$characters['country']}} class="form-control" /> </div>
+                                                        <input id='country' required="required" name='country' type="text" placeholder={{$characters['country']}} class="form-control" /> </div>
                                                     <div class="form-group">
                                                         <label class="control-label">Phone</label>
-                                                        <input id='phone' name='phone' type="text" placeholder={{$characters['phone']}} class="form-control" /> </div>
+                                                        <input id='phone' required="required" name='phone' type="text" placeholder={{$characters['phone']}} class="form-control" /> </div>
                                                     <div class="margiv-top-10">
                                                         <input type="submit" method="POST" class="nav-link" href="{{url('/user')}}"></input>
                                                     </div>
