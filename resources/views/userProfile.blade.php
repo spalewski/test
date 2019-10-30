@@ -1383,28 +1383,46 @@ License: You must have a valid license purchased only from themeforest(the above
                                         <div class="tab-content">
                                             <!-- PERSONAL INFO TAB -->
                                             <div class="tab-pane active" id="tab_1_1">
-                                                <form role="form" action="#">
+                                                <form role="form"  method="POST" action="{{ route('update') }}">
                                                     <div class="form-group">
                                                         <label class="control-label">First Name</label>
-                                                        <input type="text" placeholder={{$characters['user_name']}} class="form-control" /> </div>
+                                                        <input id='user_name' name='user_name' type="text" placeholder={{$characters['user_name']}} class="form-control" /> </div>
                                                     <div class="form-group">
                                                         <label class="control-label">Last Name</label>
-                                                        <input type="text" placeholder={{$characters['user_surname']}} class="form-control" /> </div>
+                                                        <input id='user_surname' name='user_surname' type="text" placeholder={{$characters['user_surname']}} class="form-control" /> </div>
                                                     <div class="form-group">
                                                         <label class="control-label">Address</label>
-                                                        <input type="text" placeholder={{$characters['address']}} class="form-control" /> </div>
+                                                        <input id='address' name='address' type="text" placeholder={{$characters['address']}} class="form-control" /> </div>
                                                     <div class="form-group">
                                                         <label class="control-label">Country</label>
-                                                        <input type="text" placeholder={{$characters['country']}} class="form-control" /> </div>
+                                                        <input id='country' name='country' type="text" placeholder={{$characters['country']}} class="form-control" /> </div>
                                                     <div class="form-group">
                                                         <label class="control-label">Phone</label>
-                                                        <input type="text" placeholder={{$characters['phone']}} class="form-control" /> </div>
+                                                        <input id='phone' name='phone' type="text" placeholder={{$characters['phone']}} class="form-control" /> </div>
                                                     <div class="margiv-top-10">
-                                                        <a href="javascript:;" class="btn green"> Save Changes </a>
+                                                        <a type="submit" class="nav-link" href="{{ route('update') }}">{{ __('UPDATE') }}</a>
                                                         <a href="javascript:;" class="btn default"> Cancel </a>
+
                                                     </div>
                                                 </form>
                                             </div>
+                                            <li class="nav-item dropdown">
+                                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                                    {{ "LOGOUT" }} <span class="caret"></span>
+                                                </a>
+
+                                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                                        {{ __('Logout') }}
+                                                    </a>
+
+                                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                                        @csrf
+                                                    </form>
+                                                </div>
+                                            </li>
                                             <!-- END PERSONAL INFO TAB -->
                                             <!-- CHANGE AVATAR TAB -->
                                             <div class="tab-pane" id="tab_1_2">
@@ -1550,6 +1568,7 @@ License: You must have a valid license purchased only from themeforest(the above
             <i class="icon-logout"></i>
             <div class="quick-sidebar-notification">
                 <span class="badge badge-danger">7</span>
+
             </div>
         </button>
         <!-- END QUICK SIDEBAR TOGGLER -->
