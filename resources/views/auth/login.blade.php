@@ -21,10 +21,10 @@ License: You must have a valid license purchased only from themeforest(the above
 
     <head>
         <meta charset="utf-8" />
-        <title>Metronic Admin Theme #6 | User Login 1</title>
+        <title>Test Laravel app with Metronic integration by Sebastian Palewski </title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta content="width=device-width, initial-scale=1" name="viewport" />
-        <meta content="Preview page of Metronic Admin Theme #6 for " name="description" />
+        <meta content="Test Laravel app with Metronic integration by Sebastian Palewski " name="description" />
         <meta content="" name="author" />
         <!-- BEGIN GLOBAL MANDATORY STYLES -->
         <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css" />
@@ -70,10 +70,24 @@ License: You must have a valid license purchased only from themeforest(the above
                 <div class="form-group">
                     <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
                     <label class="control-label visible-ie8 visible-ie9"></label>{{ __() }}
-                    <input id="email" class="form-control form-control-solid placeholder-no-fix" type="email" autocomplete="off" placeholder="email" name="email" value="{{('email')}}" /> </div>
+                    <input id="email" class="form-control form-control-solid placeholder-no-fix @error('email') is-invalid @enderror" type="email" autocomplete="off" placeholder="email" name="email" value="{{('email')}}" />
+                    @error('email')
+                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                    @enderror
+                </div>
+
                 <div class="form-group">
                     <label class="control-label visible-ie8 visible-ie9">{{ __('Password') }}</label>
-                    <input  id="password" class="form-control form-control-solid placeholder-no-fix" type="password" autocomplete="off" placeholder="password" name="password" /> </div>
+                    <input  id="password" class="form-control form-control-solid placeholder-no-fix @error('password') is-invalid @enderror" type="password" autocomplete="off" placeholder="password" name="password" />
+                    @error('password')
+                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                    @enderror
+
+                </div>
 
                 <div class="form-actions">
                     <button type="submit" class="btn green uppercase">
@@ -94,35 +108,17 @@ License: You must have a valid license purchased only from themeforest(the above
 
             <!-- END FORGOT PASSWORD FORM -->
             <!-- BEGIN REGISTRATION FORM -->
-            <form class="register-form" action="index.html" method="post">
-                <h3 class="font-green">Sign Up</h3>
-                <p class="hint"> Enter your personal details below: </p>
-                <div class="form-group">
-                    <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
-                    <label class="control-label visible-ie8 visible-ie9">Email</label>
-                    <input class="form-control placeholder-no-fix" type="text" placeholder="Email" name="email" /> </div>
-                <div class="form-group">
-                    <label class="control-label visible-ie8 visible-ie9">Password</label>
-                    <input class="form-control placeholder-no-fix" type="password" autocomplete="off" id="register_password" placeholder="Password" name="password" /> </div>
-                <div class="form-group">
-                    <label class="control-label visible-ie8 visible-ie9">Re-type Your Password</label>
-                    <input class="form-control placeholder-no-fix" type="password" autocomplete="off" placeholder="Re-type Your Password" name="rpassword" /> </div>
-                <div class="form-group margin-top-20 margin-bottom-20">
-                    <label class="mt-checkbox mt-checkbox-outline">
-                        <input type="checkbox" name="tnc" /> I agree to the
-                        <a href="javascript:;">Terms of Service </a> &
-                        <a href="javascript:;">Privacy Policy </a>
-                        <span></span>
-                    </label>
-                    <div id="register_tnc_error"> </div>
-                </div>
+            <form class="register-form" method="POST" action="{{ route('register') }}">
                 <div class="form-actions">
                     <button type="button" id="register-back-btn" class="btn green btn-outline">Back</button>
-                    <button type="submit" id="register-submit-btn" class="btn btn-success uppercase pull-right">Submit</button>
+                    <button type="submit" id="register-submit-btn" class="btn btn-success uppercase pull-right">
+                        <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                    </button>
                 </div>
             </form>
             <!-- END REGISTRATION FORM -->
         </div>
+
         <div class="copyright"> 2014 © Metronic. Admin Dashboard Template. </div>
         <!--[if lt IE 9]>
 <script src="../assets/global/plugins/respond.min.js"></script>
@@ -152,3 +148,14 @@ License: You must have a valid license purchased only from themeforest(the above
         <!-- END THEME LAYOUT SCRIPTS -->
     </body>
 </html>
+
+@if (session('status'))
+    <div class="alert alert-success">
+        {{ session('status') }}
+    </div>
+@endif
+@if (session('warning'))
+    <div class="alert alert-warning">
+        {{ session('warning') }}
+    </div>
+@endif
