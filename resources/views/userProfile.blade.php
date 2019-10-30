@@ -1383,7 +1383,8 @@ License: You must have a valid license purchased only from themeforest(the above
                                         <div class="tab-content">
                                             <!-- PERSONAL INFO TAB -->
                                             <div class="tab-pane active" id="tab_1_1">
-                                                <form role="form"  method="POST" action="{{ route('update') }}">
+                                                <form role="form" method="POST" action="{{url('/user')}}">
+                                                    @csrf
                                                     <div class="form-group">
                                                         <label class="control-label">First Name</label>
                                                         <input id='user_name' name='user_name' type="text" placeholder={{$characters['user_name']}} class="form-control" /> </div>
@@ -1400,9 +1401,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                                         <label class="control-label">Phone</label>
                                                         <input id='phone' name='phone' type="text" placeholder={{$characters['phone']}} class="form-control" /> </div>
                                                     <div class="margiv-top-10">
-                                                        <a type="submit" class="nav-link" href="{{ route('update') }}">{{ __('UPDATE') }}</a>
-                                                        <a href="javascript:;" class="btn default"> Cancel </a>
-
+                                                        <input type="submit" method="POST" class="nav-link" href="{{url('/user')}}"></input>
                                                     </div>
                                                 </form>
                                             </div>

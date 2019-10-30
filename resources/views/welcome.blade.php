@@ -9,8 +9,8 @@
                     <!-- Table -->
                         <table class="table">
                             <tr>
-                                <th>Character</th>
-                                <th>Real Name</th>
+                                <th>Type</th>
+                                <th>Value</th>
                             </tr>
                             @foreach($characters as $key => $value)
                                 <tr>
@@ -21,7 +21,7 @@
                     @endif
                 </div>
                 @if(Auth::guest())
-                    <a href="/login" class="btn btn-info"> You need to login to see the list 😜😜 >></a>
+                    <a href="/login" class="btn btn-info"> You need to login to see the list>></a>
                 @endif
             </div>
         </div>

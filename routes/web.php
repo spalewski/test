@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', 'ListController@show');
+//Route::get('/', 'ListController@show');
 
 Auth::routes();
 
@@ -29,27 +29,8 @@ Route::get('/got', [
 Auth::routes();
 Route::get('/user/verify/{token}', 'Auth\RegisterController@verifyUser');
 Route::get('/home', 'HomeController@index')->name('home');
-/*
-|-------------------------------------------------------------------------------
-| Updates a User's Profile
-|-------------------------------------------------------------------------------
-| URL:            /user
-| Controller:     API\UsersController@putUpdateUser
-| Method:         PUT
-| Description:    Updates the authenticated user's profile
-*/
-Route::get('/user', 'UserProfileController@putUpdateUser');
-/*
-|-------------------------------------------------------------------------------
-| Updates a User's Profile
-|-------------------------------------------------------------------------------
-| URL:            /user
-| Controller:     API\UsersController@putUpdateUser
-| Method:         GET
-| Description:    Get's the authenticated user's profile
-*/
-
+//Route::get('/user', 'UserProfileController@putUpdateUser');
 Auth::routes();
-Route::get('/user', 'UserProfileController@getUserProfile')->middleware('auth');
+Route::get('/', 'UserProfileController@getUserProfile')->middleware('auth');
 Auth::routes();
-Route::put('/user', 'UserProfileController@updateUserProfile')->middleware('auth');
+Route::post('/user', 'UserProfileController@putUpdateUser')->name('update');

@@ -8,9 +8,9 @@ use Illuminate\Notifications\Notifiable;
 
 class UsersProfile extends Authenticatable {
 
-    public function user()
+    public function userProfile()
     {
-        return $this->hasOne('App\User', 'user_id');
+        return $this->hasOne('App\User', 'profile_id');
     }
 
 
@@ -31,10 +31,6 @@ class UsersProfile extends Authenticatable {
      * @var array
      */
     protected $hidden = [
-        'id', 'profile_id'
+        'id', 'profile_id', 'created_at', 'updated_at'
     ];
-    public function verifyUser()
-    {
-        return $this->hasOne('App\VerifyUser');
-    }
 }
