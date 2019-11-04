@@ -72,7 +72,7 @@ class UserProfileController extends Controller
         return view('userProfile')->withCharacters( $userProfile->toArray());
     }
 
-    public function creteEmptyProfile()
+    private function creteEmptyProfile()
     {
         $userProfile = new UsersProfile();
         $userProfile->user_name = 'user name';

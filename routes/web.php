@@ -26,6 +26,9 @@ Route::get('/got', [
     'uses' => function () {
         echo "You are allowed to view this page!";
     }]);
+
+Route::get('/transactions', 'TransactionController@searchTransactions');
+Route::post('/transactions', 'TransactionController@getTransactions');
 Auth::routes();
 Route::get('/user/verify/{token}', 'Auth\RegisterController@verifyUser');
 Route::get('/home', 'HomeController@index')->name('home');
@@ -34,3 +37,4 @@ Auth::routes();
 Route::get('/', 'UserProfileController@getUserProfile')->middleware('auth');
 Auth::routes();
 Route::post('/user', 'UserProfileController@putUpdateUser')->name('update');
+
