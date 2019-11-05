@@ -15,7 +15,6 @@ class CreateTransactionsTable extends Migration
     {
         if (!Schema::hasTable('transactions')) {
             Schema::create('transactions', function (Blueprint $table)
-
             {
                 $table->bigIncrements('id');
                 $table->string('customer_id')->index();

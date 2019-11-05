@@ -21,7 +21,7 @@ License: You must have a valid license purchased only from themeforest(the above
 
     <head>
         <meta charset="utf-8" />
-        <title>Test Laravel app with Metronic integration by Sebastian Palewski </title>
+        <title> </title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta content="width=device-width, initial-scale=1" name="viewport" />
         <meta content="Test Laravel app with Metronic integration by Sebastian Palewski " name="description" />
@@ -119,7 +119,6 @@ License: You must have a valid license purchased only from themeforest(the above
             <!-- END REGISTRATION FORM -->
         </div>
 
-        <div class="copyright"> 2014 © Metronic. Admin Dashboard Template. </div>
         <!--[if lt IE 9]>
 <script src="../assets/global/plugins/respond.min.js"></script>
 <script src="../assets/global/plugins/excanvas.min.js"></script>
