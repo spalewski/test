@@ -11,7 +11,7 @@ class CustomerController
 {
     public function addCustomer()
     {
-        return view('addTransaction');
+        return view('addCustomer');
     }
 
     public function  searchCustomers(){
@@ -30,39 +30,42 @@ class CustomerController
             ->where('customer_id', $customer_id)
             ->updateOrInsert([
                 'customer_id' => $customer_id,
-                'transaction_value' => $request['transaction_value'],
-                'notes' => $request ['notes'],
-                'transaction_date' => $request[ 'transaction_date'],
-                'transaction_code' => $request['transaction_code'],
+                'customer_name' => $request['customer_name'],
+                'customer_surname' => $request ['customer_surname'],
+                'email' => $request[ 'email'],
+                'phone' => $request['phone'],
+                'notes' => $request['notes'],
+
             ]);
-        return redirect('/transactionAdd')->with('status', 'transakcja została dodana');
+        return redirect('/customerAdd')->with('status', 'klient został dodany');
     }
 
 
     public function getCustomers()
     {
         $request = $_POST;
-        $from = $request['order_date_from'];
-        $to = $request['order_date_to'];
+        $customerSurname = $request['customer_surname'];
+
         $customer_id = $request['customer_id'];
 
-        $transactions = DB::table('transactions')
+        $customers = DB::table('customers')
             ->where('customer_id', '=', $customer_id)
-            ->where('transaction_date', '>=', $from)
-            ->where('transaction_date', '<=', $to)->get();
+            ->where('surname', '=', $customerSurname)
+           ->get();
 
-
-        return view('transactions')->with('transactions', $transactions->toArray());
+        return view('customers')->with('customers', $customers->toArray());
     }
 
     public function deleteCustomer()
     {
         $request = $_POST;
-        $transaction_code = $request['customer_id'];
+        $customer_id = $request['customer_id'];
 
-        DB::table('transactions')
-            ->where('transaction_code', $transaction_code)
+        $customer=DB::table('customers')
+            ->where('customer_id', $customer_id)
             ->delete();
 
+        $customers=new Customer();
+        return view('customers')->with('customers', $customers->toArray());
     }
 }
