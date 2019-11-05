@@ -127,9 +127,9 @@
                                                id="datatable_orders">
                                             <thead>
                                             <tr role="row" class="heading">
-                                                <th width="15%"> Data transakcji</th>
-                                                <th width="15%"> Klient</th>
-                                                <th width="10%"> Czynności</th>
+                                                <th width="15%"> Data transakcji </th>
+                                                <th width="15%"> Klient </th>
+                                                <th width="10%"> Czynności </th>
                                             </tr>
 
                                             <td>

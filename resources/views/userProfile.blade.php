@@ -45,43 +45,6 @@
 <!-- END HEAD -->
 
 <body class="">
-<!-- BEGIN USER PROFILE -->
-<div class="btn-group-img btn-group">
-    <ul class="dropdown-menu-v2" role="menu">
-        <li>
-            <a href="page_user_profile_1.html">
-                <i class="icon-user"></i> My Profile
-                <span class="badge badge-danger">1</span>
-            </a>
-        </li>
-        <li>
-            <a href="app_calendar.html">
-                <i class="icon-calendar"></i> My Calendar </a>
-        </li>
-        <li>
-            <a href="app_inbox.html">
-                <i class="icon-envelope-open"></i> My Inbox
-                <span class="badge badge-danger"> 3 </span>
-            </a>
-        </li>
-        <li>
-            <a href="app_todo_2.html">
-                <i class="icon-rocket"></i> My Tasks
-                <span class="badge badge-success"> 7 </span>
-            </a>
-        </li>
-        <li class="divider"></li>
-        <li>
-            <a href="page_user_lock_1.html">
-                <i class="icon-lock"></i> Lock Screen </a>
-        </li>
-        <li>
-            <a href="page_user_login_1.html">
-                <i class="icon-key"></i> Log Out </a>
-        </li>
-    </ul>
-</div>
-<!-- END USER PROFILE -->
 <!-- END HEADER -->
 <!-- BEGIN CONTAINER -->
 <div class="container-fluid">
@@ -108,7 +71,7 @@
 
 
                     <li class="nav-item  ">
-                        <a href="?p=" class="nav-link nav-toggle">
+                        <a href="/customers" class="nav-link nav-toggle">
                             <i class="icon-wallet" href="transactionAdd"></i>
                             <span class="title">Klienci</span>
                             <span class="arrow"></span>
