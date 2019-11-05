@@ -14,12 +14,11 @@ class CreateTransactionsTable extends Migration
     public function up()
     {
         if (!Schema::hasTable('transactions')) {
-            Schema::create('transactions', function (Blueprint $table) {
+            Schema::create('transactions', function (Blueprint $table)
 
+            {
                 $table->bigIncrements('id');
-                $table->bigInteger('foreign_id')->unsigned();
-                $table->foreign('foreign_id')->references('id')->on('customers')->onDelete('cascade');
-                $table->string('customer_id');
+                $table->string('customer_id')->index();
                 $table->float('transaction_value');
                 $table->string('transaction_code');
                 $table->string('notes')->nullable();;

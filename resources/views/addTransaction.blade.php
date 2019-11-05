@@ -77,19 +77,17 @@ License: You must have a valid license purchased only from themeforest(the above
                     </li>
 
                     <li class="nav-item  ">
-                        <a href="?p=" class="nav-link nav-toggle">
-                            <i class="icon-wallet"></i>
-                            <span class="title"> Klienci </span>
+                        <a href="/customers" class="nav-link nav-toggle">
+                            <i class="icon-wallet" href="transactionAdd"></i>
+                            <span class="title">Klienci</span>
                             <span class="arrow"></span>
                         </a>
                     </li>
 
-
-
                     <li class="nav-item  ">
-                        <a href="javascript:;" class="nav-link nav-toggle">
+                        <a href="/transactions" class="nav-link nav-toggle">
                             <i class="icon-basket"></i>
-                            <span class="title"> Transakcje </span>
+                            <span class="title">Transakcje</span>
                             <span class="arrow"></span>
                         </a>
                     </li>
@@ -128,7 +126,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                                         <input required="required" name='customer_id' type="text" placeholder="kod klienta" class="form-control" /> </div>
                                                     <div class="form-group">
                                                         <label class="control-label">kwota transakcji</label>
-                                                        <input required="required" name='transaction_value' type="number" placeholder="kwota transakcji" class="form-control" /> </div>
+                                                        <input required="required" name='transaction_value' type="number" step="0.01" placeholder="kwota transakcji" class="form-control" /> </div>
                                                     <div class="form-group">
                                                         <label class="control-label">kod transakcji</label>
                                                         <input required="required" name='transaction_code' type="text" placeholder="kod transakcji" class="form-control" /> </div>
@@ -198,4 +196,14 @@ License: You must have a valid license purchased only from themeforest(the above
 </body>
 
 </html>
+@if (session('status'))
+    <div class="alert alert-success">
+        {{ session('status') }}
+    </div>
+@endif
+@if (session('warning'))
+    <div class="alert alert-warning">
+        {{ session('warning') }}
+    </div>
+@endif
 @endsection

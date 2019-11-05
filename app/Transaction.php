@@ -16,7 +16,7 @@ class Transaction extends Model
     use Notifiable;
 
     protected $fillable = [
-        'customer_id', 'transaction_value', 'transaction_code', 'notes'
+        'customer_id', 'transaction_value', 'transaction_code', 'notes', 'transaction_date'
     ];
 
     protected $hidden = [

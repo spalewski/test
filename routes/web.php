@@ -22,11 +22,11 @@ Route::post('/transactionsDelete', 'TransactionController@deleteTransaction');
 Route::post('/transactionAdd', 'TransactionController@putTransaction')->middleware('auth');
 Route::get('/transactionAdd', 'TransactionController@addTransaction')->middleware('auth');
 
-Route::get('/customers', 'TransactionController@searchTransactions')->middleware('auth');
-Route::post('/customers', 'TransactionController@getTransactions');
-Route::post('/customerDelete', 'TransactionController@deleteTransaction');
-Route::post('/customerAdd', 'TransactionController@putTransaction')->middleware('auth');
-Route::get('/customerAdd', 'TransactionController@addTransaction')->middleware('auth');
+Route::get('/customers', 'CustomerController@searchCustomers')->middleware('auth');
+Route::post('/customers', 'CustomerController@getCustomers');
+Route::post('/customerDelete', 'CustomerController@deleteCustomer')->middleware('auth');
+Route::post('/customerAdd', 'CustomerController@putCustomer')->middleware('auth');
+Route::get('/customerAdd', 'CustomerController@addCustomer')->middleware('auth');
 
 
 Route::get('/', 'UserProfileController@getUserProfile')->middleware('auth');

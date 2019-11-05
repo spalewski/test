@@ -45,14 +45,19 @@ class TransactionController
         $from = $request['order_date_from'];
         $to = $request['order_date_to'];
         $customer_id = $request['customer_id'];
+        $transactions=[];
 
-        $transactions = DB::table('transactions')
-            ->where('customer_id', '=', $customer_id)
-            ->where('transaction_date', '>=', $from)
-            ->where('transaction_date', '<=', $to)->get();
+        if($from==null||$to==null||$customer_id==null){
+            $transactions = DB::table('transactions')->get();
+        }else{
 
+            $transactions = DB::table('transactions')
+                ->where('customer_id', '=', $customer_id)
+                ->where('transaction_date', '>=', $from)
+                ->where('transaction_date', '<=', $to)->get();
 
-        return view('transactions')->with('transactions', $transactions->toArray());
+        }
+            return view('transactions')->with('transactions', $transactions->toArray());
     }
 
     public function deleteTransaction()
@@ -64,5 +69,7 @@ class TransactionController
             ->where('transaction_code', $transaction_code)
             ->delete();
 
+        $transactions=new Transaction();
+        return view('transactions')->with('transactions', $transactions->toArray());
     }
 }

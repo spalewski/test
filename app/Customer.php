@@ -7,7 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 class Customer extends Model
 {
     public function Customer(){
-        return $this->hasMany('App\Transaction', 'customer_id');
 
+        return $this->belongsTo('Customer', 'customer_id');
     }
+
+
+
+
+    protected $hidden = [
+      'id',  'created_at', 'updated_at'
+    ];
 }

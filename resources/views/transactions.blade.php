@@ -73,15 +73,15 @@
 
 
                     <li class="nav-item  ">
-                        <a href="?p=" class="nav-link nav-toggle">
-                            <i class="icon-wallet" href="transactionAdd"></i>
+                        <a href="customers" class="nav-link nav-toggle">
+                            <i class="icon-wallet"></i>
                             <span class="title">Klienci</span>
                             <span class="arrow"></span>
                         </a>
                     </li>
 
                     <li class="nav-item  ">
-                        <a href="/transactions" class="nav-link nav-toggle">
+                        <a href="transactions" class="nav-link nav-toggle">
                             <i class="icon-basket"></i>
                             <span class="title">Transakcje</span>
                             <span class="arrow"></span>
@@ -206,9 +206,13 @@
                                                     </td>
                                                 @endforeach
                                                 <td>
+                                                    <form role="form" method="post" action="{{url('/transactionDelete')}}">
+                                                        @csrf
                                                     <button class="btn btn-sm btn-default filter-cancel">
-                                                        <i class="fa fa-times"></i> Usuń transakcję
+                                                        <input type="hidden" name="transaction_code" value={{$transaction->transaction_code}}>
+                                                        <i class="fa fa-times"> Usuń transakcję </i>
                                                     </button>
+                                                    </form>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -266,10 +270,15 @@
 <!-- END THEME LAYOUT SCRIPTS -->
 </body>
 </html>
-@endsection
 
 @if (session('status'))
     <div class="alert alert-success">
         {{ session('status') }}
     </div>
 @endif
+@if (session('warning'))
+    <div class="alert alert-warning">
+        {{ session('warning') }}
+    </div>
+@endif
+@endsection
