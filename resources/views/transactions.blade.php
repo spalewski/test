@@ -170,7 +170,7 @@
                                                 <div class="margin-bottom-5">
                                                     <button  class="btn btn-sm btn-success filter-submit margin-bottom">
                                                         <a href="/transactionAdd">
-                                                        <i class="fa fa-search" type="button" class="nav-link"></i> Dodaj transakcję
+                                                        Dodaj transakcję
                                                         </a>
                                                     </button>
                                                 </div>
