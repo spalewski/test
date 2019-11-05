@@ -13,17 +13,20 @@ class CreateCustomersTable extends Migration
      */
     public function up()
     {
-        Schema::create('customers', function (Blueprint $table) {
+        if (!Schema::hasTable('customers')) {
+            Schema::create('customers', function (Blueprint $table) {
 
-            $table->string('customer_id');
-            $table->string('name');
-            $table->string('surname');
-            $table->string('email')->unique();
-            $table->string('phone');
-            $table->string('notes');
-            $table->timestamps();
+                $table->bigIncrements('id');
+                $table->string('customer_id');
+                $table->string('name');
+                $table->string('surname');
+                $table->string('email')->unique()->nullable();;
+                $table->string('phone')->nullable();;
+                $table->string('notes')->nullable();;
+                $table->timestamps();
 
-        });
+            });
+        }
     }
 
     /**

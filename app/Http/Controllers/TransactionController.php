@@ -5,23 +5,39 @@ namespace App\Http\Controllers;
 
 
 use App\Transaction;
-use App\UsersProfile;
-use http\Env\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class TransactionController
 {
     public function addTransaction()
     {
-
+        return view('addTransaction');
     }
 
     public function  searchTransactions(){
-
-        return view('transactions');
+        $transactions=new Transaction();
+        return view('transactions')->with('transactions', $transactions->toArray());
 
     }
+
+    public function putTransaction(){
+
+        $request=$_POST;
+        $customer_id = $request['customer_id'];
+
+            $transaction = new Transaction();
+            DB::table('transactions')
+                ->where('customer_id', $customer_id)
+                ->updateOrInsert([
+                    'customer_id' => $customer_id,
+                    'transaction_value' => $request['transaction_value'],
+                    'notes' => $request ['notes'],
+                    'transaction_date' => $request[ 'transaction_date'],
+                    'transaction_code' => $request['transaction_code'],
+                ]);
+            return redirect('/transactionAdd')->with('status', 'transakcja została dodana');
+    }
+
 
     public function getTransactions()
     {
@@ -32,21 +48,21 @@ class TransactionController
 
         $transactions = DB::table('transactions')
             ->where('customer_id', '=', $customer_id)
-            ->where('created_at', '>=', $from)
-            ->where('created_at', '<=', $to)->get();
+            ->where('transaction_date', '>=', $from)
+            ->where('transaction_date', '<=', $to)->get();
 
 
-        return view('transactions')->withCharacters($transactions->toArray());
+        return view('transactions')->with('transactions', $transactions->toArray());
     }
 
-    private function creteEmptyTransaction()
+    public function deleteTransaction()
     {
-        $userProfile = new UsersProfile();
-        $userProfile->user_name = 'user name';
-        $userProfile->user_surname = 'user surname';
-        $userProfile->phone = "user phone";
-        $userProfile->address = "user address";
-        $userProfile->country = "user country";
-        return $userProfile;
+        $request = $_POST;
+        $transaction_code = $request['transaction_code'];
+
+        DB::table('transactions')
+            ->where('transaction_code', $transaction_code)
+            ->delete();
+
     }
 }

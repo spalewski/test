@@ -1,40 +1,25 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 
-//Route::get('/', 'ListController@show');
+
+Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');;
 
 Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
-
 Route::get('/got', [
     'middleware' => ['auth'],
     'uses' => function () {
         echo "You are allowed to view this page!";
     }]);
 
-Route::get('/transactions', 'TransactionController@searchTransactions');
+Route::get('/transactions', 'TransactionController@searchTransactions')->middleware('auth');
 Route::post('/transactions', 'TransactionController@getTransactions');
-Auth::routes();
+Route::post('/transactionsDelete', 'TransactionController@deleteTransaction');
+Route::post('/transactionAdd', 'TransactionController@putTransaction')->middleware('auth');
+Route::get('/transactionAdd', 'TransactionController@addTransaction')->middleware('auth');
 Route::get('/user/verify/{token}', 'Auth\RegisterController@verifyUser');
-Route::get('/home', 'HomeController@index')->name('home');
-//Route::get('/user', 'UserProfileController@putUpdateUser');
-Auth::routes();
+Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');;
 Route::get('/', 'UserProfileController@getUserProfile')->middleware('auth');
-Auth::routes();
 Route::post('/user', 'UserProfileController@putUpdateUser')->name('update');
+Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
+Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
 
