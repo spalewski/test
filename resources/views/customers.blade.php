@@ -172,14 +172,24 @@
 
                                     <tr>
                                         <td>kod klienta</td>
-                                        <td>wartość transakcji</td>
-                                        <td>kod transakcji</td>
+                                        <td>Imię</td>
+                                        <td>Nazwisko</td>
+                                        <td>e-mail</td>
+                                        <td>Telefon</td>
                                         <td>Notatki</td>
-                                        <td>data transakcji</td>
                                     </tr>
                                     @foreach($customers as $customer)
                                         <tr>
                                             @foreach($customer as $key => $value)
+                                                @if($key=='id')
+                                                    @continue;
+                                                @endif
+                                                @if($key=='created_at')
+                                                    @continue;
+                                                @endif
+                                                @if($key=='updated_at')
+                                                    @continue;
+                                                @endif
                                                 <td>
                                                     {{ $value }}
                                                 </td>

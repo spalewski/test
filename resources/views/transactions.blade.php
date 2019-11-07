@@ -201,6 +201,15 @@
 
 
                                                 @foreach($transaction as $key => $value)
+                                                    @if($key=='id')
+                                                    @continue;
+                                                    @endif
+                                                        @if($key=='created_at')
+                                                        @continue;
+                                                        @endif
+                                                        @if($key=='updated_at')
+                                                        @continue;
+                                                        @endif
                                                     <td>
                                                         {{ $value }}
                                                     </td>
