@@ -53,11 +53,8 @@
     <link rel="shortcut icon" href="favicon.ico" /> </head>
 
 
-
 </head>
 <body>
-
-
 
 
 <!-- BEGIN HEADER -->
@@ -80,7 +77,6 @@
                                    </span>
                                 </a>
                             </li>
-
                             <li>
                                 <a href="{{ route('logout') }}"   onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -105,13 +101,5 @@
             @yield('content')
         </main>
     </div>
-
-
-
-
-
-
-
-
 </body>
 </html>

@@ -17,13 +17,13 @@ Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm
 
 
 Route::get('/transactions', 'TransactionController@searchTransactions')->middleware('auth');
-Route::post('/transactions', 'TransactionController@getTransactions');
+Route::post('/transactions', 'TransactionController@getTransactions')->middleware('auth');
 Route::post('/transactionsDelete', 'TransactionController@deleteTransaction');
 Route::post('/transactionAdd', 'TransactionController@putTransaction')->middleware('auth');
 Route::get('/transactionAdd', 'TransactionController@addTransaction')->middleware('auth');
 
 Route::get('/customers', 'CustomerController@searchCustomers')->middleware('auth');
-Route::post('/customers', 'CustomerController@getCustomers');
+Route::post('/customers', 'CustomerController@getCustomers')->middleware('auth');
 Route::post('/customerDelete', 'CustomerController@deleteCustomer')->middleware('auth');
 Route::post('/customerAdd', 'CustomerController@putCustomer')->middleware('auth');
 Route::get('/customerAdd', 'CustomerController@addCustomer')->middleware('auth');
